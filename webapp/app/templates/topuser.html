@@ -1,0 +1,252 @@
+{% extends "index.html" %}
+{% block topuser %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<script>
+$(function () {
+    // Create the chart
+    $('#container').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Top 10 users on {{output[0].date}}'
+        },
+        subtitle: {
+            text: 'Click the columns to view top contributing friends for each user'
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            title: {
+                text: 'Total revenue generated in network'
+            }
+
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y:.1f}'
+                }
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> total<br/>'
+        },
+
+        series: [{
+            name: 'user',
+            colorByPoint: true,
+
+            data: [{
+                name: {{output[0].passenger_id}},
+                y: {{output[0].friend_spend}},
+                drilldown: {{output[0].passenger_id}}
+            }, {
+                name: {{output[1].passenger_id}},
+                y: {{output[1].friend_spend}},
+                drilldown: null
+            }, {
+                name: {{output[2].passenger_id}},
+                y: {{output[2].friend_spend}},
+                drilldown: null
+            }, {
+                name: {{output[3].passenger_id}},
+                y: {{output[3].friend_spend}},
+                drilldown: null
+            }, {
+                name: {{output[4].passenger_id}},
+                y: {{output[4].friend_spend}},
+                drilldown: null
+            }, {
+                name: {{output[5].passenger_id}},
+                y: {{output[5].friend_spend}},
+                drilldown: null
+            }, {
+                name: {{output[6].passenger_id}},
+                y: {{output[6].friend_spend}},
+                drilldown: null
+            }, {
+                name: {{output[7].passenger_id}},
+                y: {{output[7].friend_spend}},
+                drilldown: null
+            }, {
+                name: {{output[8].passenger_id}},
+                y: {{output[8].friend_spend}},
+                drilldown: null
+            }, {
+                name: {{output[9].passenger_id}},
+                y: {{output[9].friend_spend}},
+                drilldown: null
+            }]
+        }],
+        drilldown: {
+            series: [{
+                name: {{output[0].passenger_id}},
+                id: {{output[0].passenger_id}},
+                data: [
+                    [
+                        '{{output[0].passenger_id}}',
+                        {{output2[0].self_spend}}
+                    ],
+                    [
+                        '{{output[1].passenger_id}}',
+                        {{output2[1].self_spend}}
+                    ],
+                    [
+                        '{{output[2].passenger_id}}',
+                        {{output2[2].self_spend}}
+                    ],
+                    [
+                        '{{output[3].passenger_id}}',
+                        {{output2[3].self_spend}}
+                    ],
+                    [
+                        '{{output[4].passenger_id}}',
+                        {{output2[4].self_spend}}
+                    ],
+                    [
+                        '{{output[5].passenger_id}}',
+                        {{output2[5].self_spend}}
+                    ],
+                    [
+                        '{{output[6].passenger_id}}',
+                        {{output2[6].self_spend}}
+                    ],
+                    [
+                        '{{output[7].passenger_id}}',
+                        {{output2[7].self_spend}}
+                    ],
+                    [
+                        '{{output[8].passenger_id}}',
+                        {{output2[8].self_spend}}
+                    ],
+                    [
+                        '{{output[9].passenger_id}}',
+                        {{output2[9].self_spend}}
+                    ]
+                ]
+            }]
+        }
+    });
+
+
+    $('#container2').highcharts({
+        chart: {
+            zoomType: 'xy'
+        },
+        title: {
+            text: 'Top 10 users on {{output[0].date}}'
+        },
+        xAxis: [{
+            categories: ['{{output[0].passenger_id}}', '{{output[1].passenger_id}}', '{{output[2].passenger_id}}',
+            '{{output[3].passenger_id}}', '{{output[4].passenger_id}}', '{{output[5].passenger_id}}',
+                '{{output[6].passenger_id}}', '{{output[7].passenger_id}}', '{{output[8].passenger_id}}', '{{output[9].passenger_id}}'],
+            crosshair: true
+        }],
+        yAxis: [{ // Primary yAxis
+            labels: {
+                format: '{value}',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            },
+            title: {
+                text: 'Self spend',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            }
+        }, { // Secondary yAxis
+            title: {
+                text: 'Friends spend',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            labels: {
+                format: '{value}',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            opposite: true
+        }],
+        tooltip: {
+            shared: true
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            x: 120,
+            verticalAlign: 'top',
+            y: 100,
+            floating: true,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+        },
+        series: [{
+            name: 'Friends spend',
+            type: 'column',
+            yAxis: 1,
+            data: [{{output[0].friend_spend}}, {{output[1].friend_spend}}, {{output[2].friend_spend}}, {{output[3].friend_spend}},
+             {{output[4].friend_spend}}, {{output[5].friend_spend}}, {{output[6].friend_spend}}, {{output[7].friend_spend}},
+              {{output[8].friend_spend}}, {{output[9].friend_spend}}],
+            tooltip: {
+            }
+
+        }, {
+            name: 'Self Spend',
+            type: 'spline',
+            data: [{{output2[0].self_spend}}, {{output2[1].self_spend}}, {{output2[2].self_spend}}, {{output2[3].self_spend}},
+             {{output2[4].self_spend}}, {{output2[5].self_spend}}, {{output2[6].self_spend}}, {{output2[7].self_spend}},
+              {{output2[8].self_spend}}, {{output2[9].self_spend}}],
+            tooltip: {
+            }
+        }]
+    });
+});
+</script>
+
+
+<!--<div class="container">-->
+     <!--<div class="starter-template">-->
+       <!--<div class="row" style="height:100vh;">-->
+               <!--<div class="col-md-10 col-md-offset-1">-->
+                   <!--<table class="table">-->
+                     <!--<thead>-->
+                       <!--<tr>-->
+                         <!--<th>date</th>-->
+                         <!--<th>passenger id</th>-->
+                         <!--<th>self spend</th>-->
+                         <!--<th>friend spend</th>-->
+                       <!--</tr>-->
+                     <!--</thead>-->
+                     <!--<tbody>-->
+                       <!--{% for val in output %}-->
+                       <!--<tr>-->
+                         <!--<td>{{val.date}}</td>-->
+                         <!--<td>{{val.passenger_id}}</td>-->
+                         <!--<td>{{val.self_spend}}</td>-->
+                         <!--<td>{{val.friend_spend}}</td>-->
+                       <!--</tr>-->
+                       <!--{% endfor %}-->
+                     <!--</tbody>-->
+                   <!--</table>-->
+               <!--</div>-->
+       <!--</div>-->
+     <!--</div>-->
+   <!--</div>-->
+{% endblock %}

@@ -42,7 +42,7 @@ def read_csv(file, json_file, format):
                 float_keys = {"pickup_lon", "pickup_lat", "dropoff_lon", "dropoff_lat",
                             "trip_distance", "fare", "extra", "mta_tax", "tip_amount",
                             "tolls_amount", "improvement_fee", "total_amount"}
-                int_keys = {"passenger_id", "passenger_count"}
+                int_keys = {"passenger_id", "passenger_count", "self_id", "friend_id"}
                 if key in do_nothing_keys:
                     row[key] = value
                 elif key in float_keys:
