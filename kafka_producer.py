@@ -3,6 +3,8 @@ import sys
 from datetime import datetime
 from kafka.client import SimpleClient
 from kafka.producer import KeyedProducer
+from time import sleep
+
 
 
 class Producer(object):
@@ -29,6 +31,7 @@ class Producer(object):
                                           passenger_id)
             print message_info
             self.producer.send_messages('trips', source_symbol, message_info)
+            sleep(0.5)
             msg_cnt += 1
 
 if __name__ == "__main__":

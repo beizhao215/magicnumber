@@ -43,9 +43,9 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/slides">Slides</a></li>
-                    <li><a href="/realtime">RealTime</a></li>
+                    <li class="active"><a href="/realtime">RealTime</a></li>
 
 
                 </ul>
@@ -54,72 +54,29 @@
     </nav>
 
     <!-- Inline CSS based on choices in "Settings" tab -->
-
-
-
-
-
-<div class="container-full">
-    <div class="jumbotron text-center" style="background-color:transparent; margin:auto">
-
-        <form id="inputdateform" class="form-inline" action="topuser" method="POST">
-            <div class="input-group input-group-lg col-xs-1" style="margin: auto;" ng-class="{'has-error': verifyForm.verifyCode.$invalid}">
-
-                <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text" style="min-width:15em"/>
-                <button class="btn btn-primary input-group-addon"  style="background-color:#29a3e5;"  role="button" type="submit" value="Send">
-                    <span id="filter" style="color: #ffffff">
-                        >
-                    </span>
-                </button>
-                <!--<button type="submit" value="Send" class="btn btn-default id-submit">Submit</button>-->
-
-            </div>
-        </form>
-
-    </div>
-</div>
-
-    {% block topuser %}{% endblock %}
-
-    <script>
-    $(document).ready(function(){
-      $('#inputdateform').bootstrapValidator({
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            date: {
-                validators: {
-                    notEmpty: {
-                        message: 'The date cannot be empty'
-                    }
-                }
-            },
-
-        } /* added closing brace */
-    });
-
-    var date_input=$('input[name="date"]'); //our date input has the name "date"
-      var options={
-        format: 'yyyy-mm-dd',
-        orientation: "top left",
-        autoclose: true,
-        defaultViewDate: { year: 2016, month: 03, day: 01 },
-        startDate: "2016-01-01",
-        endDate: "2016-06-30",
-      };
-      date_input.datepicker(options);
-    })
+<p id="title">UTC Clock</p>
+    <p id="clock">Current Time</p>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
 </script>
 
+<script>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../static/js/bootstrap.min.js"></script>
-    <link href="../static/css/datepicker.css" rel="stylesheet">
+function anyFunction()
+{
+ function fixTimeFormat(i) {
+    return ( i < 10 ) ? "0" + i : i;
+ }
+ var today = new Date(),
+    h = fixTimeFormat(today.getHours()),
+    m = fixTimeFormat(today.getMinutes()),
+    s = fixTimeFormat(today.getSeconds());
+ document.getElementById("clock").innerHTML = h + ":" + m + ":" + s;
+}
 
-  </body>
+$(function () {
+ setInterval(anyFunction, 2000);
+});
+
+</script>
+</body>
 </html>

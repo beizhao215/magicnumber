@@ -50,3 +50,7 @@ def index_post():
 @app.route('/slides')
 def slides():
     return render_template("slides.html")
+
+@app.route('/realtime')
+def realtime():
+ return render_template("realtime.html")
