@@ -53,4 +53,11 @@ def slides():
 
 @app.route('/realtime')
 def realtime():
- return render_template("realtime.html")
+    stmt = "SELECT * FROM location_now"
+    response = session.execute(stmt)
+    locations = {}
+    for val in response:
+        locations[val.geohash] = val.count
+
+
+    return render_template("realtime.html", output=locations)
