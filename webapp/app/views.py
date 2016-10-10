@@ -55,9 +55,13 @@ def slides():
 def realtime():
     stmt = "SELECT * FROM location_now"
     response = session.execute(stmt)
-    locations = {}
+    locations = []
     for val in response:
-        locations[val.geohash] = val.count
+        lat, lng = val.geohash.split(",")
+        lat = float(lat)
+        lng = float(lng)
+        count = val.count
+        locations.append([lat,lng,count])
 
 
     return render_template("realtime.html", output=locations)

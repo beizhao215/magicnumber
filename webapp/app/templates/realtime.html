@@ -29,6 +29,8 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
         <style>#mapid { height: 500px; }</style>
+        <script src="//cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
 
 
     </head>
@@ -59,36 +61,30 @@
     </nav>
 
     <!-- Inline CSS based on choices in "Settings" tab -->
-<p id="title">UTC Clock</p>
-    <p id="clock">Current Time</p>
 
     <div id="mapid">
     </div>
 
-    <div>{{output}}</div>
-
 <script>
 
-function anyFunction()
-{
- function fixTimeFormat(i) {
-    return ( i < 10 ) ? "0" + i : i;
- }
- var today = new Date(),
-    h = fixTimeFormat(today.getHours()),
-    m = fixTimeFormat(today.getMinutes()),
-    s = fixTimeFormat(today.getSeconds());
- document.getElementById("clock").innerHTML = h + ":" + m + ":" + s;
-}
+var mymap = L.map('mapid').setView([40.712800, -74.005900], 11);
+L.tileLayer('https://api.mapbox.com/styles/v1/beizhao215/ciu2cjsga006e2iqd93u9vfe4/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYmVpemhhbzIxNSIsImEiOiJjaXExcXhkM3UwMHlhZnNubm5uaG8wenJnIn0.cAFVYL166sWTuqwT_zwSzg', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'insight'
+}).addTo(mymap);
 
-$(function () {
- setInterval(anyFunction, 2000);
-});
+{% for each in output %}
+
+{% if each[2] < 3 %}
+var circle = L.circle([{{each[0]}}, {{each[1]}}], 0.5).addTo(mymap);
+{% else %}
+var marker = L.marker([{{each[0]}}, {{each[1]}}]).bindPopup('{{each[2]}}').addTo(mymap);
+{% endif %}
+{% endfor %}
 
 </script>
 </body>
-<script src="//cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
 
-<script src="../static/js/myapp.js"></script>
 
 </html>
