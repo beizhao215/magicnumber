@@ -76,7 +76,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/beizhao215/ciu2cjsga006e2iqd93u9vf
 
 {% for each in output %}
 
-{% if each[2] < 3 %}
+{% if each[2] < 2 %}
 var circle = L.circle([{{each[0]}}, {{each[1]}}], 0.5).addTo(mymap);
 {% else %}
 var marker = L.marker([{{each[0]}}, {{each[1]}}]).bindPopup('{{each[2]}}').addTo(mymap);
