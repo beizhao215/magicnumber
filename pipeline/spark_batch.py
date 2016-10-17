@@ -17,20 +17,8 @@ def unionAll(*dfs):
 
 sc = SparkContext(appName="magicNumberBatch")
 sqlContext = SQLContext(sc)
-#gdf1606 = sqlContext.read.json("hdfs://ec2-54-69-226-73.us-west-2.compute.amazonaws.com:9000/user/green_201606.json")
-#ydf1606 = sqlContext.read.json("hdfs://ec2-54-69-226-73.us-west-2.compute.amazonaws.com:9000/user/yellow_201606.json")
-#gdf1605 = sqlContext.read.json("hdfs://ec2-54-69-226-73.us-west-2.compute.amazonaws.com:9000/user/green_201605.json")
-#ydf1605 = sqlContext.read.json("hdfs://ec2-54-69-226-73.us-west-2.compute.amazonaws.com:9000/user/yellow_201605.json")
-#gdf1604 = sqlContext.read.json("hdfs://ec2-54-69-226-73.us-west-2.compute.amazonaws.com:9000/user/green_201604.json")
-#ydf1604 = sqlContext.read.json("hdfs://ec2-54-69-226-73.us-west-2.compute.amazonaws.com:9000/user/yellow_201604.json")
-#gdf1603 = sqlContext.read.json("hdfs://ec2-54-69-226-73.us-west-2.compute.amazonaws.com:9000/user/green_201603.json")
-#ydf1603 = sqlContext.read.json("hdfs://ec2-54-69-226-73.us-west-2.compute.amazonaws.com:9000/user/yellow_201603.json")
-#gdf1602 = sqlContext.read.json("hdfs://ec2-54-69-226-73.us-west-2.compute.amazonaws.com:9000/user/green_201602.json")
-#ydf1602 = sqlContext.read.json("hdfs://ec2-54-69-226-73.us-west-2.compute.amazonaws.com:9000/user/yellow_201602.json")
 gdf1601 = sqlContext.read.json("hdfs://ec2-54-69-226-73.us-west-2.compute.amazonaws.com:9000/user/green_201601.json")
 ydf1601 = sqlContext.read.json("hdfs://ec2-54-69-226-73.us-west-2.compute.amazonaws.com:9000/user/yellow_201601.json")
-
-#df = unionAll(gdf1606, ydf1606, gdf1605, ydf1605, gdf1604, ydf1604, gdf1603, ydf1603, gdf1602, ydf1602, gdf1601, ydf1601)
 
 df = unionAll(gdf1601, ydf1601)
 sqlContext.registerDataFrameAsTable(df, "trips_table")
