@@ -73,6 +73,7 @@ class Producer(object):
             message_info = json.dumps(message_info)
             print message_info
             self.producer.send_messages('tripstopic', source_symbol, message_info)
+            sleep(0.005)
             msg_cnt += 1
 
 if __name__ == "__main__":
