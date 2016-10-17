@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # based on  http://stackoverflow.com/questions/7052947/split-95mb-json-array-into-smaller-chunks
 # usage: python json-split filename.json
-# produces multiple filename_0.json of 1.49 MB size
 
 import json
 import sys
