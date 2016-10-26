@@ -1,5 +1,7 @@
-Magic Number: A metric to identify high value users.
+Insight Data Engineering Fellow Project
 
-For Demo and introductory slides, please visit
+It was hosted on AWS but currently the ec2 instances have been terminated.
 
-www.magicnumber.club
+For screencast, please visit https://www.youtube.com/watch?v=bq0tkYGMv_I
+
+For slides, please visit https://docs.google.com/presentation/d/1hjlYLcjVoepbhIYnHUlHxQ02cGFOlxOAybo9cJCLzZQ/edit#slide=id.p4
