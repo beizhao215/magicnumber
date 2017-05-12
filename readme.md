@@ -6,4 +6,4 @@ The cluster for data pipeline and web server was hosted on AWS but currently the
 
 For demo of the web app, please visit https://www.youtube.com/watch?v=bq0tkYGMv_I
 
-For slides, please visit https://docs.google.com/presentation/d/1hjlYLcjVoepbhIYnHUlHxQ02cGFOlxOAybo9cJCLzZQ/edit#slide=id.p4
+For slides, please visit https://docs.google.com/presentation/d/1hjlYLcjVoepbhIYnHUlHxQ02cGFOlxOAybo9cJCLzZQ/edit?usp=sharing
